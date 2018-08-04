@@ -1,6 +1,7 @@
 /node_modules/
 /public/
-/functions/
+/functions/node_modules
+/functions/index.js
 /test/__snapshots__/
 bundle.js
 npm-debug.log
