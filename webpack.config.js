@@ -23,7 +23,7 @@ let
 
 switch(NODE_ENV){
 	case 'development' :
-		console.log('WEBPACK: DEV SETTINGS');
+		console.log('WEBPACK - DEV');
 		output = {
 			path     : path.resolve(__dirname, 'dist'),
 			filename : 'bundle.js'
@@ -31,7 +31,7 @@ switch(NODE_ENV){
 		devtool = 'eval-source-map';
 	break;
 	case 'production' : 
-		console.log('WEBPACK: PRODUCTION SETTINGS');
+		console.log('WEBPACK - PRODUCTION');
 		output = {
 			path: path.resolve(__dirname, 'public'),
 			filename: 'bundle.js'
@@ -39,7 +39,7 @@ switch(NODE_ENV){
 		devtool = false;
 	break;
 	case 'default' :
-		console.log('WEBPACK: DEFAULT SETTINGS');
+		console.log('WEBPACK - DEFAULT');
 		output = {
 			path     : path.resolve(__dirname, 'dist'),
 			filename : 'bundle.js'
