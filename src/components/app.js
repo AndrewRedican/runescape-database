@@ -1,4 +1,5 @@
 import React, { Component }   from 'react';
+import { testFx }             from '../actions';
 
 class App extends Component {
     constructor(props){
