@@ -16,21 +16,22 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "test": "npm run test:start && npm run test:clear",
-    "test:start": "cross-env NODE_ENV=test BABEL_ENV=modules:commonjs jest --updateSnapshot",
+    "test:start": "cross-env NODE_ENV=test jest --updateSnapshot",
     "test:clear": "del-cli test/__snapshots__",
-    "test:watch": "cross-env NODE_ENV=test BABEL_ENV=modules:commonjs jest --watch",
-    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=modules:commonjs jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "test:release": "npm run build && npm pack ./dist",
-    "start": "cross-env NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack/dev.config.js",
-    "build": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack.js --config webpack/prod.config.js",
-    "build-functions": "cross-env NODE_ENV=production node ./node_modules/webpack/bin/webpack.js --config webpack/functions.config.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "build": "cross-env NODE_ENV=production BUILD_ENV=all webpack webpack",
+    "build-app": "cross-env NODE_ENV=production BUILD_ENV=app webpack webpack",
+    "build-functions": "cross-env NODE_ENV=production BUILD_ENV=functions webpack",
     "deploy": "firebase deploy",
     "deploy:functions": "firebase deploy:functions"
   },
   "jest": {
     "verbose": true,
     "modulePathIgnorePatterns": [
-      "<rootDir>/dist/"
+      "<rootDir>/public/"
     ],
     "transform": {
       "^.+\\.js$": "<rootDir>/test/jest.transform.js"
