@@ -1,6 +1,6 @@
 # Weekend Challenge : RuneScape Database
 
-![npm](https://img.shields.io/npm/v/runescape-database.svg) ![Build Status](https://travis-ci.com/AndrewRedican/runescape-database.svg?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/AndrewRedican/runescape-database/badge.svg)](https://snyk.io/test/github/{username}/{repo})
+![npm](https://img.shields.io/npm/v/runescape-database.svg) ![Build Status](https://travis-ci.com/AndrewRedican/runescape-database.svg?branch=master) [![Known Vulnerabilities](https://snyk.io/test/github/AndrewRedican/runescape-database/badge.svg)](https://snyk.io/test/github/AndrewRedican/runescape-database)
 
 #### Last Updated: August-8-2018 by [**AndrewRedican**](https://github.com/AndrewRedican)
 
