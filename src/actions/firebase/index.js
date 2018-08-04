@@ -1,12 +1,9 @@
-import FB           from 'firebase';
-import Types        from '../../actions/types';
+import FB from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 import config       from './config';
 import err          from '../../morphs/err';
 import atomicUpdate from '../../morphs/atomicupdate';
-
-/**
- * Deconstruct Types
- **/
 
 FB.initializeApp(config);
 const DB = FB.database();
