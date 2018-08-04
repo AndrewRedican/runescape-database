@@ -1,4 +1,13 @@
 {
+  "projectName": "runescape-database",
+  "projectOwner": "AndrewRedican",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
   "name": "runescape-database",
   "version": "1.0.0",
   "description": "app that fetches data from runescape database",
