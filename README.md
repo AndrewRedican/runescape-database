@@ -38,7 +38,7 @@ I would like to add more, but I also tend to be overconfident. That's it for now
 1. [x] Push initial commit
 2. [x] Create a Development Setup, Generate Basic App View 
 3. [x] Create a Firebase project, add configuration files
-4. [ ] Host Project Live
+4. [x] Host Project Live
 5. [ ] Write server-side firebase cloud functions and publish
 6. [ ] Set up a custom Cron Engine
 7. [ ] Create view to check payload
@@ -48,3 +48,7 @@ I would like to add more, but I also tend to be overconfident. That's it for now
 11. [ ] Add some detailed visuals, graphs even.
 12. [ ] Add a way to download database to csv and json.
 13. [ ] BONUS - Set up a staging environment 
+
+## Live Project At
+
+[**https://runescape-database.firebaseapp.com**](https://runescape-database.firebaseapp.com)
