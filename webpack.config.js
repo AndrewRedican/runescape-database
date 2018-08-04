@@ -1,9 +1,11 @@
-const path              = require('path');
-const webpack           = require('webpack');
-const package           = require('./package.json');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const NODE_ENV          = process.env.NODE_ENV;
-const BUILD_ENV         = process.env.BUILD_ENV;
+const 
+	path              = require('path'),
+	webpack           = require('webpack'),
+	UglifyJSPlugin 	  = require('uglifyjs-webpack-plugin'),
+	package           = require('./package.json'),
+	HtmlWebpackPlugin = require('html-webpack-plugin'),
+	NODE_ENV          = process.env.NODE_ENV,
+	BUILD_ENV         = process.env.BUILD_ENV;
 
 const defines = {
   'process.env.NODE_ENV' : JSON.stringify(NODE_ENV),
@@ -21,6 +23,10 @@ let
 		})
 	];
 
+/**
+ * TODO DEFINE CONFIG FOR BUILD_ENV
+ */
+
 switch(NODE_ENV){
 	case 'development' :
 		console.log('WEBPACK - DEV');
@@ -37,6 +43,7 @@ switch(NODE_ENV){
 			filename: 'bundle.js'
 		};
 		devtool = false;
+		plugins.push(new UglifyJSPlugin());
 	break;
 	case 'default' :
 		console.log('WEBPACK - DEFAULT');
@@ -50,8 +57,10 @@ switch(NODE_ENV){
 
 const config = {
     target : 'web',
-    mode   : NODE_ENV,
-    entry  : './src/index.js',
+	mode   : NODE_ENV,
+    entry  : { // Documentation: https://webpack.js.org/guides/code-splitting/
+		index : './src/index.js'
+	},
     output : output,
     module : {
 		rules : [

@@ -36,13 +36,15 @@ I would like to add more, but I also tend to be overconfident. That's it for now
 ## Tasks
 
 1. [x] Push initial commit
-2. [ ] Create a Development Setup, Generate Basic App View 
-3. [ ] Create a Firebase project, add configuration files
+2. [x] Create a Development Setup, Generate Basic App View 
+3. [x] Create a Firebase project, add configuration files
 4. [ ] Host Project Live
 5. [ ] Write server-side firebase cloud functions and publish
-6. [ ] Create view to check payload
-7. [ ] Setup a backend mechanism for continuos updates.
-8. [ ] Add a view to control backend functions.
-9. [ ] Add login mechanism.
-10. [ ] Add some detailed visuals, graphs even.
-11. [ ] Add a way to download database to csv and json.
+6. [ ] Set up a custom Cron Engine
+7. [ ] Create view to check payload
+8. [ ] Setup a backend mechanism for continuos updates.
+9. [ ] Add a view to control backend functions.
+10. [ ] Add login mechanism.
+11. [ ] Add some detailed visuals, graphs even.
+12. [ ] Add a way to download database to csv and json.
+13. [ ] BONUS - Set up a staging environment 
