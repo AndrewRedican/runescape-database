@@ -1,0 +1,30 @@
+{
+  "name": "runescape-database",
+  "version": "1.0.0",
+  "description": "app that fetches data from runescape database",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewRedican/runescape-database.git"
+  },
+  "keywords": [
+    "runescape",
+    "database",
+    "weekend",
+    "challenge",
+    "rs",
+    "firebase",
+    "webpack",
+    "babel",
+    "awesome"
+  ],
+  "author": "Andrew J. Redican",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndrewRedican/runescape-database/issues"
+  },
+  "homepage": "https://github.com/AndrewRedican/runescape-database#readme"
+}
