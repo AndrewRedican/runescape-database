@@ -35,7 +35,7 @@ I would like to add more, but I also tend to be overconfident. That's it for now
 
 ## Tasks
 
-1. [*] Push initial commit
+1. [x] Push initial commit
 2. [ ] Create a Development Setup, Generate Basic App View 
 3. [ ] Create a Firebase project, add configuration files
 4. [ ] Host Project Live
