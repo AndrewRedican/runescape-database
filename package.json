@@ -13,8 +13,36 @@
   "description": "app that fetches data from runescape database",
   "main": "index.js",
   "scripts": {
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "test": "npm run test:start && npm run test:clear",
+    "test:start": "cross-env NODE_ENV=test BABEL_ENV=modules:commonjs jest --updateSnapshot",
+    "test:clear": "del-cli test/__snapshots__",
+    "test:watch": "cross-env NODE_ENV=test BABEL_ENV=modules:commonjs jest --watch",
+    "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=modules:commonjs jest --coverage",
+    "test:release": "npm run build && npm pack ./dist",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack"
+  },
+  "jest": {
+    "verbose": true,
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/test/jest.transform.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "testURL": "http://localhost",
+    "setupFiles": [
+      "./test/jest.setup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "dependencies": {
     "axios": "^0.18.0",

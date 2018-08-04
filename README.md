@@ -1,8 +1,8 @@
 # Weekend Challenge : RuneScape Database
 
-[**Home**](https://github.com/partnerhero/runescape-database/wiki) |
-[**Index**](https://github.com/partnerhero/runescape-database/wiki/Index) |
-**Last Edit:** August-8-2018 by [AndrewRedican](https://github.com/AndrewRedican)
+![npm](https://img.shields.io/npm/v/runescape-database.svg) ![Build Status](https://travis-ci.com/AndrewRedican/runescape-database.svg?branch=master) ![npm](https://img.shields.io/npm/dm/runescape-database.svg) [![Known Vulnerabilities](https://snyk.io/test/github/AndrewRedican/runescape-database/badge.svg)](https://snyk.io/test/github/{username}/{repo}) [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+
+#### Last Updated: August-8-2018 by [**AndrewRedican**](https://github.com/AndrewRedican)
 
 ## Prologue
 
