@@ -22,8 +22,8 @@
     "test:coverage": "cross-env NODE_ENV=test jest --coverage",
     "test:release": "npm run build && npm pack ./dist",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
-    "build": "cross-env NODE_ENV=production BUILD_ENV=all webpack webpack",
-    "build-app": "cross-env NODE_ENV=production BUILD_ENV=app webpack webpack",
+    "build": "cross-env NODE_ENV=production BUILD_ENV=all webpack",
+    "build-app": "cross-env NODE_ENV=production BUILD_ENV=app webpack",
     "build-functions": "cross-env NODE_ENV=production BUILD_ENV=functions webpack",
     "deploy": "firebase deploy",
     "deploy:functions": "firebase deploy:functions"
