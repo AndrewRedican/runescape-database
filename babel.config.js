@@ -23,20 +23,10 @@ const presets = moduleSystem === "es"
     '@babel/preset-react'
   ];
 
-// The ES system does not polyfill etc, while the others do.
-const transformOptions = moduleSystem === "es"
-  ? {
-    helpers: true,
-    polyfill: false,
-    useBuiltIns: true,
-    useESModules: true
-  }
-  : {
-    helpers: true,
-    polyfill: true,
-    useBuiltIns: false,
-    useESModules: false
-  };
+/**
+ * documentation: https://babeljs.io/docs/en/next/babel-plugin-transform-runtime.html
+ */
+const transformOptions = { useESModules: moduleSystem === "es" };
 
 module.exports = {
   presets,
