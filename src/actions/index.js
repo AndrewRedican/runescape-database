@@ -1,1 +1,1 @@
-import { get, write, newPushKey, insert, update, remove, unwatch, googleAuthentication } from './firebase';
+import { get, write, newPushKey, insert, update, remove, unwatch } from './firebase';
