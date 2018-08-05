@@ -40,15 +40,17 @@ I would like to add more, but I also tend to be overconfident. That's it for now
 3. [x] Create a Firebase project, add configuration files
 4. [x] Host Project Live
 5. [x] Create Some Basic UI
-6. [ ] Write server-side firebase cloud functions and publish
-7. [ ] Set up a custom Cron Engine
-8. [ ] Create view to check payload
-9. [ ] Setup a backend mechanism for continuos updates.
-10. [ ] Add a view to control backend functions.
-11. [ ] Add login mechanism.
-12. [ ] Add some detailed visuals, graphs even.
-13. [ ] Add a way to download database to csv and json.
-14. [ ] BONUS - Set up a staging environment 
+6. [x] Login Mechanism
+7. [ ] Differenciate between regular user and admin
+8. [ ] Write server-side firebase cloud functions and publish
+9. [ ] Set up a custom Cron Engine
+10. [ ] Create view to check payload
+11. [ ] Setup a backend mechanism for continuos updates.
+12. [ ] Add a view to control backend functions.
+13. [ ] Add login mechanism.
+14. [ ] Add some detailed visuals, graphs even.
+15. [ ] Add a way to download database to csv and json.
+16. [ ] BONUS - Set up a staging environment 
 
 ## Live Project At
 
