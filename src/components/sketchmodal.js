@@ -7,9 +7,9 @@ import isDescendant         from '../morphs/isdescendant';
 class SketchModal extends Component{
     constructor(props){
         super(props);
-        err.missingAnyKeys(arguments,'this.props',this.props,['onExit','modalID','containerID']);
-        ['modalID','containerID'].forEach( key => { err.isNotType(arguments,'this.props.'+key,this.props[key],'string'); });
-        err.isUndefined(arguments,'this.props.onExit',this.props.onExit);
+        err.missingAnyKeys('this.props',this.props,['onExit','modalID','containerID']);
+        ['modalID','containerID'].forEach( key => { err.isNotType('this.props.'+key,this.props[key],'string'); });
+        err.isUndefined('this.props.onExit',this.props.onExit);
         this.onExit          = this.onExit      .bind(this);
         this.onKeyDown       = this.onKeyDown   .bind(this);
         this.onClick         = this.onClick     .bind(this);
