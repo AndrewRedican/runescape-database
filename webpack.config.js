@@ -58,12 +58,17 @@ switch(NODE_ENV){
 const config = {
     target : 'web',
 	mode   : NODE_ENV,
-    entry  : { // Documentation: https://webpack.js.org/guides/code-splitting/
-		index : './src/index.js'
-	},
+    entry  : [
+		'./src/index.js',
+		'font-awesome/css/font-awesome.css'
+	],
     output : output,
     module : {
 		rules : [
+			{
+				test: /\.scss$/,
+				loader: 'style!css!resolve-url!sass?sourceMap'
+			  },
 			{
 				test: /\.css$/,
 				use: [
@@ -76,6 +81,12 @@ const config = {
 				exclude : /node_modules/,
 				use : {
 					loader : 'babel-loader'
+				}
+			},{
+				test: /\.(jpe?g|gif|png|eot|svg|woff|woff2|ttf)$/,
+				loader: 'file-loader',
+				options: {
+					useRelativePath: process.env.NODE_ENV === 'production'
 				}
 			}
 		]
