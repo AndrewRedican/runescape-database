@@ -4,6 +4,8 @@ import 'firebase/database';
 import config       from './config';
 import err          from '../../morphs/err';
 import atomicUpdate from '../../morphs/atomicupdate';
+import emailToId    from '../../morphs/emailtoid';
+import idToEmail    from '../../morphs/idtoemail';
 
 FB.initializeApp(config);
 const
@@ -18,21 +20,30 @@ export async function googleAuthentication(){
     let result;
     try{
         result = await Auth.signInWithPopup(provider);
-        console.log({result})
+        if(result){
+            updateUserInformation('google',{
+                isNewUser  : result.additionalUserInfo.isNewUser,
+                providerId : result.additionalUserInfo.providerId,
+                credential : {
+                    accessToken : result.credential.accessToken,
+                    idToken     : result.credential.idToken
+                },
+                operationType : result.operationType,
+                displayName   : result.user.displayName,
+                refreshToken  : result.user.refreshToken,
+                uid           : result.user.uid,
+                email         : result.user.email,
+                metadata      : result.user.metadata,
+                picture       : result.user.photoURL
+            });
+            return result.user.email;
+        }
     }
     catch(error){
         const { code, message, email, credential } = error;
-        /**
-         * Deal with error
-         */
+        console.error({error, code, message, email, credential});
+        return false;
     }
-    console.log({result})
-    if(result) return {
-        ...result.additionalUserInfo.profile,
-        ...result.credential.accessToken,
-        ...result.user
-    };
-    return false;
 };
 
 export async function get(path){
@@ -77,6 +88,46 @@ export function unwatch(path){
     return true;
 };
 
-export function pendingUpdate(){
+export function multiLocationUpdate(){
     return new atomicUpdate(DB);
+};
+
+function updateUserInformation(authenticationType='unknown',userData){
+    try{ 
+        err.isNotType('authenticationType',authenticationType,'string');
+        err.isInvalidWriteData('userData',userData);
+        switch(authenticationType){
+            case 'google' :
+                const userId = emailToId(userData.email);
+                const now    = new Date().getTime();
+                const userUpdate = {
+                    id      : userId,
+                    email   : userData.email,
+                    name    : userData.displayName,
+                    picture : userData.picture,
+                    creationTime : {
+                        string : userData.metadata.creationTime,
+                        number : parseInt(userData.metadata.a)
+                    },
+                    lastSignInTime : {
+                        string : userData.metadata.lastSignInTime,
+                        number : parseInt(userData.metadata.b)
+                    },
+                    lastProfileUpdate : {
+                        string : new Date(now).toUTCString(),
+                        number : now
+                    }
+                };
+                multiLocationUpdate()
+                .write(`users/${userId}`,userUpdate)
+                .commit();
+            break;
+            case 'facebook' :
+                // Not Available Yet
+            break;
+        };
+    }
+    catch(error){
+        console.error(`Could not update user's records using ${authenticationType} authentication`);
+    }
 };
