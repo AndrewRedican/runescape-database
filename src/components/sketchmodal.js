@@ -14,8 +14,8 @@ class SketchModal extends Component{
         this.onKeyDown       = this.onKeyDown   .bind(this);
         this.onClick         = this.onClick     .bind(this);
         this.mountedCssRules = [];
-        this.width      = (parseInt(this.props.width)  ||800);
-        this.height     = (parseInt(this.props.height) ||220);
+        this.width      = (parseFloat(this.props.width)  ||800);
+        this.height     = (parseFloat(this.props.height) ||220);
         this.perimeter  = ((this.width + this.height) * 2) + 4;
         this.animations = {
             fade         : { '0%' : { background : 'rgba(0, 0, 0, .0)' },     '100%' : { background: 'rgba(0, 0, 0, .85)' } },
