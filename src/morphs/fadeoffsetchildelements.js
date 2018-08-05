@@ -1,9 +1,9 @@
 import err from './err';
 
 function FadeOffsetChildElements(uniqueID){
-    err.isNotType(arguments,'uniqueID',uniqueID,'string');
+    err.isNotType('uniqueID',uniqueID,'string');
     var parentElement = document.getElementById(uniqueID);
-    err.isUndefined(arguments,'parentElement',parentElement);
+    err.isUndefined('parentElement',parentElement);
     const 
         height_displayed = parseInt(parentElement.style.height),
         scrollTop        = parentElement.scrollTop,

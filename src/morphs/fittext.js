@@ -1,11 +1,11 @@
 import err from './err';
 
 function fitText(uniqueID,reduce=4){
-    err.isNotType(arguments,'uniqueID',uniqueID,'string');
-    err.isNotType(arguments,'reduce',reduce,'number');
+    err.isNotType('uniqueID',uniqueID,'string');
+    err.isNotType('reduce',reduce,'number');
     if(!reduce) return;
     const targetElement = document.getElementById(uniqueID);
-    err.isUndefined(arguments,'targetElement',targetElement);
+    err.isUndefined('targetElement',targetElement);
     const
         scrollHeight = targetElement.scrollHeight,
         offsetHeight = targetElement.offsetHeight,

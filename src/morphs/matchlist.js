@@ -1,7 +1,7 @@
 import err from './err';
 
 function matchList(string,regex){
-    err.isNotType(arguments,'string',string,'string');
+    err.isNotType('string',string,'string');
     if(!regex instanceof RegExp) throw '@matchList(): Expected \'regex\' to be actual RegExp';
     let
         result,

@@ -1,9 +1,9 @@
 import err from './err';
 
 function trimText(text,maxLength=162,append='...'){
-    err.isNotType(arguments,'text',text,'string');
-    err.isNotType(arguments,'maxLength',maxLength,'number');
-    err.isNotType(arguments,'append',append,'string');
+    err.isNotType('text',text,'string');
+    err.isNotType('maxLength',maxLength,'number');
+    err.isNotType('append',append,'string');
     let
         isDifferent = false,
         inset       = '',
