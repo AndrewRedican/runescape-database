@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Block                from './block';
-import SignInWithGoogle     from './signin_google';
+import SignIn               from './signin';
 
 class UserAccessController extends Component{
     constructor(props){
@@ -16,7 +16,7 @@ class UserAccessController extends Component{
                     height : '34px'
                 }}
             >
-                <SignInWithGoogle/>
+                <SignIn/>
             </Block>
         );
     }

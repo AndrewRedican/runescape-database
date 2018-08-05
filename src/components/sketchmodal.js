@@ -155,7 +155,7 @@ class SketchModal extends Component{
         let { animations, mountedCssRules } = this;
         let
             SSS   = document.styleSheets,
-            SS    = SSS[1];
+            SS    = SSS[0];
         Object.keys(animations).forEach( name => {
             const animation = animations[name];
             let        rule = '@keyframes ' + name + '{';
@@ -177,7 +177,7 @@ class SketchModal extends Component{
         let { mountedCssRules } = this;
         let
             SSS = document.styleSheets,
-            SS  = SSS[1];
+            SS  = SSS[0];
         mountedCssRules.forEach( index => { SS.deleteRule(SS.cssRules.length - 1); });
         mountedCssRules = [];
         window.removeEventListener('keydown', this.onKeyDown, true);
