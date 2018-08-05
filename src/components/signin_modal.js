@@ -21,8 +21,8 @@ class SignInModal extends Component{
                             modalID     = {modalID}
                             containerID = {containerID}
                             onExit      = {this.onExit}
-                            width       = '800px'
-                            height      = '400px'
+                            width       = '750px'
+                            height      = '300px'
                         >
                             <Block
 
