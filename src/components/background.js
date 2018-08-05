@@ -22,6 +22,8 @@ class Background extends Component{
                     width           : width,
                     height          : height,
                     backgroundColor : '#B7B3A1',
+                    top             : 0,
+                    left            : 0,
                     ...this.props.style
                 }}
             >
