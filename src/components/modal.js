@@ -20,9 +20,9 @@ import isVisible            from '../morphs/isvisible';
 class Modal extends Component{
     constructor(props){
         super(props);
-        err.missingAnyKeys(arguments,'this.props',this.props,['children','modalID','containerID']);
+        err.missingAnyKeys('this.props',this.props,['children','modalID','containerID']);
         ['children','modalID','containerID'].forEach( key => {
-            err.isUndefined(arguments,'this.props.' + key,this.props[key]);
+            err.isUndefined('this.props.' + key,this.props[key]);
         });
         this._render        = this._render          .bind(this);
         this.setListener    = this.setListener      .bind(this);
@@ -73,12 +73,12 @@ class Modal extends Component{
         this.removeListener('resize',this.updatePosition);
     }
     updatePosition(){
-        err.missingAnyKeys(arguments,'this',this,['container','positions'])
-        err.isUndefined(arguments,'this.container',this.container);
-        err.isUndefined(arguments,'this.positions',this.positions);
-        err.missingAnyKeys(arguments,'this.props.positions',this.positions,['original','delta','adjustment']);
+        err.missingAnyKeys('this',this,['container','positions'])
+        err.isUndefined('this.container',this.container);
+        err.isUndefined('this.positions',this.positions);
+        err.missingAnyKeys('this.props.positions',this.positions,['original','delta','adjustment']);
         ['original','delta','adjustment'].forEach( keyName => {
-            err.isUndefined(arguments,'this.positions.' + keyName,this.positions[keyName]);
+            err.isUndefined('this.positions.' + keyName,this.positions[keyName]);
         });
         const { container } = this;
         if('onContainerNotVisible' in this.props)
@@ -127,13 +127,13 @@ class Modal extends Component{
         this._render();
     }
     setListener(actionType,callbackFunction) {
-        err.isNotType(arguments,'actionType',actionType,'string');
-        err.isUndefined(arguments,'callbackFunction',callbackFunction);
+        err.isNotType('actionType',actionType,'string');
+        err.isUndefined('callbackFunction',callbackFunction);
         window.addEventListener(actionType, callbackFunction, true); 
     }
     removeListener(actionType,callbackFunction) {
-        err.isNotType(arguments,'actionType',actionType,'string');
-        err.isUndefined(arguments,'callbackFunction',callbackFunction);
+        err.isNotType('actionType',actionType,'string');
+        err.isUndefined('callbackFunction',callbackFunction);
         window.removeEventListener(actionType, callbackFunction, true);
     }
     render(){ return <noscript />; }
