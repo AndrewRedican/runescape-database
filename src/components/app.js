@@ -1,4 +1,5 @@
 import React, { Component }   from 'react';
+import Background             from './background';
 import { testFx }             from '../actions';
 
 class App extends Component {
@@ -7,9 +8,13 @@ class App extends Component {
     }
     render(){
         return(
-            <div>
+            <Background
+                style = {{
+                    color : '#FBFFFE'
+                }}
+            >
                 Hello World
-            </div>
+            </Background>
         );
     }
 }
