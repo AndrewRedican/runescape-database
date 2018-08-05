@@ -6,16 +6,34 @@ import err          from '../../morphs/err';
 import atomicUpdate from '../../morphs/atomicupdate';
 
 FB.initializeApp(config);
-const DB = FB.database();
+const
+    DB   = FB.database(),
+    Auth = FB.auth(); 
 
-let provider = new FB.auth.GoogleAuthProvider();
-
-provider.addScope('profile');
-provider.addScope('email');
-
-FB.auth().useDeviceLanguage();
-
-
+export async function googleAuthentication(){
+    let provider = new FB.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    Auth.useDeviceLanguage();
+    let result;
+    try{
+        result = await Auth.signInWithPopup(provider);
+        console.log({result})
+    }
+    catch(error){
+        const { code, message, email, credential } = error;
+        /**
+         * Deal with error
+         */
+    }
+    console.log({result})
+    if(result) return {
+        ...result.additionalUserInfo.profile,
+        ...result.credential.accessToken,
+        ...result.user
+    };
+    return false;
+};
 
 export async function get(path){
     err.isInvalidPath('path',path);
