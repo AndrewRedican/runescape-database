@@ -43,13 +43,9 @@
 
 /*** Font of Choice ***/
 
-.body {
-    font-family: 'Oxygen', sans-serif;
-}
-
 * {
     font-size: 1em;
-    font-family: inherit;
+    font-family: 'Oxygen', sans-serif;
 }
 
 
