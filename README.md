@@ -39,7 +39,7 @@ I would like to add more, but I also tend to be overconfident. That's it for now
 2. [x] Create a Development Setup, Generate Basic App View 
 3. [x] Create a Firebase project, add configuration files
 4. [x] Host Project Live
-5. [ ] Create Some Basic UI
+5. [x] Create Some Basic UI
 6. [ ] Write server-side firebase cloud functions and publish
 7. [ ] Set up a custom Cron Engine
 8. [ ] Create view to check payload
