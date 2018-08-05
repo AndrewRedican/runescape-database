@@ -30,8 +30,6 @@ class Block extends Component{
                     padding       : 0,
                     position      : 'absolute',
                     verticalAlign : 'top',
-                    top           : 0,
-                    left          : 0,
                     overflowX     : 'hidden',
                     overflowY     : 'hidden',
                     ...customStyle,

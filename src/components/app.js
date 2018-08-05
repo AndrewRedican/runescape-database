@@ -3,7 +3,7 @@ import Background             from './background';
 import Header                 from './header';
 import Content                from './content';
 import Block                  from './block';
-import { testFx }             from '../actions';
+import UserAccess             from './useraccesscontroller';
 
 class App extends Component {
     constructor(props){
@@ -14,23 +14,27 @@ class App extends Component {
             <Background>
                 <Header style = {{ color : '#FBFFFE' }}>
                     <Block
+                        name  = 'title'
                         style = {{ 
                             width      : '50%',
                             height     : '40px',
                             fontSize   : '30px',
-                            padding    : '3px'
+                            padding    : '3px',
+                            left       : 0
                         }}
                     >
                         RuneScape Database
                     </Block>
                     <Block
+                        name  = 'access'
                         style = {{ 
                             width   : '50%',
                             height  : '40px',
-                            padding : '3px'
+                            padding : '3px',
+                            right   : 0
                         }}
                     >
-
+                        <UserAccess/>
                     </Block>
                 </Header>
                 <Content>
