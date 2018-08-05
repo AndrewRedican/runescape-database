@@ -10,7 +10,7 @@ import idToEmail    from '../../morphs/idtoemail';
 FB.initializeApp(config);
 const
     DB   = FB.database(),
-    Auth = FB.auth(); 
+    Auth = FB.auth();
 
 export async function googleAuthentication(){
     let provider = new FB.auth.GoogleAuthProvider();
