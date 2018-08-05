@@ -32,6 +32,8 @@ class Block extends Component{
                     verticalAlign : 'top',
                     top           : 0,
                     left          : 0,
+                    overflowX     : 'hidden',
+                    overflowY     : 'hidden',
                     ...customStyle,
                     ...this.props.style
                 }}
@@ -44,9 +46,13 @@ class Block extends Component{
                         padding   : 0,
                         height    : '100%',
                         width     : '100%',
-                        position  : 'relative'
+                        position  : 'relative',
+                        overflowX : 'hidden',
+                        overflowY : 'hidden'
                     }}
-                    { ...this.props }
+                    onMouseEnter = {this.props.onMouseEnter}
+                    onMouseLeave = {this.props.onMouseLeave}
+                    onClick      = {this.props.onClick}
                 >
                     {this.props.children}
                 </div>
