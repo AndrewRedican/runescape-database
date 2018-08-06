@@ -54,6 +54,7 @@
     "font-awesome": "^4.7.0",
     "json2csv": "^4.2.0",
     "mitsuketa": "^1.4.3",
+    "rc-checkbox": "^2.1.5",
     "react": "^16.2.0",
     "react-csv": "^1.0.14",
     "react-dom": "^16.2.0",

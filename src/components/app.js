@@ -1,13 +1,21 @@
 import React, { Component }   from 'react';
+import { bindActionCreators } from 'redux';
+import { connect }            from 'react-redux';
 import Background             from './background';
 import Header                 from './header';
 import Content                from './content';
 import Block                  from './block';
 import UserAccess             from './useraccesscontroller';
+import { initialFetch }       from '../actions';
+import err                    from '../morphs/err';
 
 class App extends Component {
     constructor(props){
         super(props);
+        err.missingKey('this.props',this.props,'initialFetch');
+    }
+    componentWillMount(){
+        this.props.initialFetch();
     }
     render(){
         return(
@@ -45,4 +53,10 @@ class App extends Component {
     }
 }
 
-export default App;
+function mapDispatchToProps(dispath){
+    return bindActionCreators({
+        initialFetch : initialFetch
+    }, dispath);
+}
+
+export default connect(null,mapDispatchToProps)(App);

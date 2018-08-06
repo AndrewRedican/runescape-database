@@ -12,7 +12,7 @@ const
     DB   = FB.database(),
     Auth = FB.auth();
 
-export async function googleAuthentication(){
+export async function googleAuthentication(options){
     let provider = new FB.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
@@ -36,6 +36,7 @@ export async function googleAuthentication(){
                 metadata      : result.user.metadata,
                 picture       : result.user.photoURL
             });
+            console.log({options})
             return result.user.email;
         }
     }

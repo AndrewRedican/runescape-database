@@ -2,41 +2,48 @@ import React, { Component }     from 'react';
 import SketchModal              from './sketchmodal';
 import Block                    from './block';
 import GoogleLogin              from './signin_button_google';
+import Checkbox                 from 'rc-checkbox';
 import err                      from '../morphs/err';
+import 'rc-checkbox/assets/index.css';
 
 class SignInModal extends Component{
     constructor(props){
         super(props);
-        err.missingAnyKeys('this.props',this.props,['modalID','containerID']);        
-        this.onExit           = this.onExit.bind(this);
-        this.state            = { display : true };
+        err.missingAnyKeys('this.props',this.props,['modalID','containerID','onExitModal','StorageKeys']);  
+        err.missingAnyKeys('this.props.StorageKeys',this.props.StorageKeys,['localStorageKey','sessionStorageKey']);      
+        this.onExit = this.onExit.bind(this);
+        this.state  = { 
+            display  : true,
+            remember : false
+        };
     }
     render(){
-        const { modalID, containerID } = this.props;
+        const { modalID, containerID, StorageKeys } = this.props;
+        const { display, remember } = this.state;
         return(
             <div id = {containerID} >
                 {
-                    this.state.display ?
+                    display ?
                         <SketchModal
                             modalID     = {modalID}
                             containerID = {containerID}
                             onExit      = {this.onExit}
-                            width       = '400px'
-                            height      = '300px'
+                            width       = '350px'
+                            height      = '350px'
                         >
                             <div
                                 style = {{
                                     display   : 'block',
                                     boxSizing : 'border-box',
-                                    width     : '400px',
-                                    height    : '300px',
+                                    width     : '350px',
+                                    height    : '350px',
                                     position  : 'relative'
                                 }}
                             >
                                 <Block
                                     style = {{
                                         display    : 'block',
-                                        width      : '400px',
+                                        width      : '350px',
                                         height     : '60px',
                                         userSelect : 'none'
                                     }}
@@ -59,7 +66,7 @@ class SignInModal extends Component{
                                     style = {{
                                         display   : 'block',
                                         boxSizing : 'border-box',
-                                        width     : '400px',
+                                        width     : '350px',
                                         height    : '240px',
                                         top       : '60px'
                                     }}
@@ -100,9 +107,31 @@ class SignInModal extends Component{
                                                 fontWeight   : 600
                                             }}
                                         >
-                                            <GoogleLogin/>
+                                            <GoogleLogin remember = {remember ? StorageKeys : false}/>
                                         </div>
                                     </div>
+                                </Block>
+                                <Block
+                                    style = {{
+                                        display   : 'block',
+                                        boxSizing : 'border-box',
+                                        width     : '350px',
+                                        height    : '50px',
+                                        top       : '300px'
+                                    }}
+                                >
+                                    <Checkbox
+                                        defaultChecked
+                                        onChange = {(value) => { this.setState({ remember : value })}}
+                                        disabled = {false}
+                                    />
+                                    <span
+                                        style = {{
+                                            padding : '1px 8px'
+                                        }}
+                                    >
+                                        Remember Me
+                                    </span>
                                 </Block>
                             </div>
                         </SketchModal>
@@ -112,7 +141,9 @@ class SignInModal extends Component{
         );
     }
     onExit(){
-        if(this.state.display) this.setState({ display : false });
+        if(!this.state.display) return;
+        this.setState({ display : false });
+        if('onExitModal' in this.props) this.props.onExitModal();
     }
 }
 

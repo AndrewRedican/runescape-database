@@ -2,19 +2,34 @@ import { get, write, newPushKey, insert, update, remove, unwatch, multiLocationU
 import err   from '../morphs/err';
 import Types from './types';
 
-const { FETCH_USER_DATA } = Types;
+const { FETCH_ALL_DATA, FETCH_USER_DATA } = Types;
 
 export function initialFetch(){
+    return async dispatch => {
+        const projectKeys = await get('system/projectKeys');
+        const { localStorageKey, sessionStorageKey } = projectKeys;
+        const
+            localData   = localStorage[localStorageKey],
+            sessionData = sessionStorage[sessionStorageKey],
+            id          = (localData||sessionData);
 
-    let id = '';
-    // fetch session project keys "localStorage" / SessionStorage
+        console.log({id})
 
-    // look for data in localStorage / SessionStorage
+        let UserData = false;
+        if(typeof id === 'string') UserData = get(`users/${id}`);
 
-    // if data found, compare email/string fetch data
-
-    if(typeof id === 'string') fetchUserData(id);
-
+        const payload = {
+            AppData : {
+                localStorageKey : localStorageKey,
+                sessionStorageKey : sessionStorageKey
+            },
+            UserData : (UserData||false)
+        };
+        dispatch({ 
+            type    : FETCH_ALL_DATA,
+            payload : payload
+        });
+    };
 };
 
 function fetchUserData(id){
@@ -23,3 +38,5 @@ function fetchUserData(id){
         dispatch({ type : FETCH_USER_DATA, payload : (get(`users/${id}`)||false) });
     };
 };
+
+//if(typeof id === 'string') fetchUserData(id);

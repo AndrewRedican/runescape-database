@@ -1,10 +1,12 @@
 import React, { Component }     from 'react';
 import Block                    from './block';
 import { googleAuthentication } from '../actions/firebase';
+import err                      from '../morphs/err';
 
 class GoogleLogin extends Component{
     constructor(props){
         super(props);
+        err.missingKey('this.props',this.props,'remember');
         this.state        = { focused : false };
         this.onMouseEnter = this.onMouseEnter   .bind(this);
         this.onMouseLeave = this.onMouseLeave   .bind(this);
@@ -51,7 +53,7 @@ class GoogleLogin extends Component{
         this.setState({ focused : false });
     }
     onClick(){
-        googleAuthentication();
+        googleAuthentication(this.props.remember);
     }
 }
 
