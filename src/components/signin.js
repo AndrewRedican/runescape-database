@@ -73,8 +73,8 @@ class SignIn extends Component{
         const { name, picture } = UserData;
         return(
             <UserDropdown
-                name    = {name}
-                picture = {picture}
+                name        = {name}
+                picture     = {picture}
             />
         );
     }

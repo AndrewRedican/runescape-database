@@ -30,8 +30,8 @@ class Block extends Component{
                     padding       : 0,
                     position      : 'absolute',
                     verticalAlign : 'top',
-                    overflowX     : 'hidden',
-                    overflowY     : 'hidden',
+                    overflowX     : 'visible',
+                    overflowY     : 'visible',
                     ...customStyle,
                     ...this.props.style
                 }}
@@ -45,8 +45,8 @@ class Block extends Component{
                         height    : '100%',
                         width     : '100%',
                         position  : 'relative',
-                        overflowX : 'hidden',
-                        overflowY : 'hidden'
+                        overflowX : 'visible',
+                        overflowY : 'visible'
                     }}
                     onMouseEnter = {this.props.onMouseEnter}
                     onMouseLeave = {this.props.onMouseLeave}
