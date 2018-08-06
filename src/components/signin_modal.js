@@ -14,7 +14,7 @@ class SignInModal extends Component{
         this.onExit = this.onExit.bind(this);
         this.state  = { 
             display  : true,
-            remember : false
+            remember : true
         };
     }
     render(){

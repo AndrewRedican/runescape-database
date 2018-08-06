@@ -6,22 +6,32 @@ const { FETCH_ALL_DATA, FETCH_USER_DATA } = Types;
 
 export function initialFetch(){
     return async dispatch => {
-        const projectKeys = await get('system/projectKeys');
-        const { localStorageKey, sessionStorageKey } = projectKeys;
-        const
-            localData   = localStorage[localStorageKey],
-            sessionData = sessionStorage[sessionStorageKey],
-            id          = (localData||sessionData);
-
-        console.log({id})
-
-        let UserData = false;
-        if(typeof id === 'string') UserData = get(`users/${id}`);
-
+        const localStorageKey = await get('system/projectKeys/localStorageKey');
+        let localData = localStorage.getItem(localStorageKey);
+        try{
+            if(typeof localData === 'string') localData = JSON.parse(localData);
+        }
+        catch(error){
+            console.error(error);
+        }
+        let
+            useLocalData = true,
+            UserData = false;
+        if(typeof localData === 'object'){
+            const keyNames = ['id','email','name','picture']
+            for(var i = 0; i < keyNames.length; i++){
+                const keyName = keyNames[i];
+                if(!(keyName in localData)){
+                    useLocalData = false;
+                    break;
+                }
+            }
+        }
+        if(useLocalData) UserData = localData;
+        else UserData = await get(`users/${localData.id}`);
         const payload = {
             AppData : {
-                localStorageKey : localStorageKey,
-                sessionStorageKey : sessionStorageKey
+                localStorageKey : localStorageKey
             },
             UserData : (UserData||false)
         };

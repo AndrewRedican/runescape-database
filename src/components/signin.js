@@ -2,6 +2,7 @@ import React, { Component }     from 'react';
 import { connect }              from 'react-redux';
 import Block                    from './block';
 import SignInModal              from './signin_modal';
+import UserDropdown             from './userdropdown';
 import randomString             from '../morphs/randomstring';
 import err                      from '../morphs/err';
 
@@ -33,6 +34,7 @@ class SignIn extends Component{
             color           : '#FFC857',
             ...this.props.focusStyle
         };
+        if(UserData===null) return <noscript />;
         if(!UserData)
         return(
             <div id = {containerID}>
@@ -46,6 +48,7 @@ class SignIn extends Component{
                         color              : '#FBFFFE',
                         cursor             : 'pointer',
                         transitionDuration : '0.3s',
+                        userSelect         : 'none',
                         ...this.props.style,
                         ...focusStyle
                     }}
@@ -67,13 +70,12 @@ class SignIn extends Component{
                 }
             </div>
         );
-
-        console.log({User})
-
+        const { name, picture } = UserData;
         return(
-            <Block>
-                Already logged in!!
-            </Block>
+            <UserDropdown
+                name    = {name}
+                picture = {picture}
+            />
         );
     }
     onMouseEnter(){

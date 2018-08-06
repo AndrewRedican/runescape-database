@@ -35,9 +35,7 @@ export async function googleAuthentication(options){
                 email         : result.user.email,
                 metadata      : result.user.metadata,
                 picture       : result.user.photoURL
-            });
-            console.log({options})
-            return result.user.email;
+            },options);
         }
     }
     catch(error){
@@ -93,15 +91,16 @@ export function multiLocationUpdate(){
     return new atomicUpdate(DB);
 };
 
-function updateUserInformation(authenticationType='unknown',userData){
+function updateUserInformation(authenticationType='unknown',userData,options){
     try{ 
         err.isNotType('authenticationType',authenticationType,'string');
         err.isInvalidWriteData('userData',userData);
+        let userUpdate = {};
         switch(authenticationType){
             case 'google' :
                 const userId = emailToId(userData.email);
                 const now    = new Date().getTime();
-                const userUpdate = {
+                userUpdate = {
                     id      : userId,
                     email   : userData.email,
                     name    : userData.displayName,
@@ -127,8 +126,13 @@ function updateUserInformation(authenticationType='unknown',userData){
                 // Not Available Yet
             break;
         };
+        if(Object.keys(userUpdate).length>0)
+        if('localStorageKey' in options)
+        if(typeof options.localStorageKey === 'string')
+        localStorage.setItem(options.localStorageKey,JSON.stringify(userUpdate));
+        return userUpdate.email;
     }
     catch(error){
-        console.error(`Could not update user's records using ${authenticationType} authentication`);
+        console.error(`Could not update user's records using ${authenticationType} authentication`,error);
     }
 };
