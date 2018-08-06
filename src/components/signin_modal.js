@@ -9,17 +9,19 @@ import 'rc-checkbox/assets/index.css';
 class SignInModal extends Component{
     constructor(props){
         super(props);
-        err.missingAnyKeys('this.props',this.props,['modalID','containerID','onExitModal','StorageKeys']);  
-        err.missingAnyKeys('this.props.StorageKeys',this.props.StorageKeys,['localStorageKey','sessionStorageKey']);      
+        this.onGoogleLogin = this.onGoogleLogin.bind(this);
+        err.missingAnyKeys('this.props',this.props,['modalID','containerID','onExitModal','localStorageKey','onLogin']);     
         this.onExit = this.onExit.bind(this);
         this.state  = { 
             display  : true,
             remember : true
         };
+        console.log('SignInModal')
     }
     render(){
-        const { modalID, containerID, StorageKeys } = this.props;
-        const { display, remember } = this.state;
+        const { modalID, containerID } = this.props;
+        const { onGoogleLogin } = this;
+        const { display } = this.state;
         return(
             <div id = {containerID} >
                 {
@@ -107,7 +109,7 @@ class SignInModal extends Component{
                                                 fontWeight   : 600
                                             }}
                                         >
-                                            <GoogleLogin remember = {remember ? StorageKeys : false}/>
+                                            <GoogleLogin onClick = {onGoogleLogin}/>
                                         </div>
                                     </div>
                                 </Block>
@@ -144,6 +146,9 @@ class SignInModal extends Component{
         if(!this.state.display) return;
         this.setState({ display : false });
         if('onExitModal' in this.props) this.props.onExitModal();
+    }
+    onGoogleLogin(){
+        this.props.onLogin(this.state.remember);
     }
 }
 

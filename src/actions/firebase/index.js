@@ -6,6 +6,9 @@ import err          from '../../morphs/err';
 import atomicUpdate from '../../morphs/atomicupdate';
 import emailToId    from '../../morphs/emailtoid';
 import idToEmail    from '../../morphs/idtoemail';
+import Types        from '../types';
+
+const { FETCH_USER_DATA } = Types;
 
 FB.initializeApp(config);
 const
@@ -13,15 +16,16 @@ const
     Auth = FB.auth();
 
 export async function googleAuthentication(options){
-    let provider = new FB.auth.GoogleAuthProvider();
-    provider.addScope('profile');
-    provider.addScope('email');
-    Auth.useDeviceLanguage();
-    let result;
-    try{
-        result = await Auth.signInWithPopup(provider);
-        if(result){
-            updateUserInformation('google',{
+    return async dispatch => {
+        let provider = new FB.auth.GoogleAuthProvider();
+        provider.addScope('profile');
+        provider.addScope('email');
+        Auth.useDeviceLanguage();
+        let result;
+        try{
+            result = await Auth.signInWithPopup(provider);
+            if(result)
+            result = updateUserInformation('google',{
                 isNewUser  : result.additionalUserInfo.isNewUser,
                 providerId : result.additionalUserInfo.providerId,
                 credential : {
@@ -36,12 +40,16 @@ export async function googleAuthentication(options){
                 metadata      : result.user.metadata,
                 picture       : result.user.photoURL
             },options);
+            dispatch({ 
+                type    : FETCH_USER_DATA,
+                payload : result
+            });
         }
-    }
-    catch(error){
-        const { code, message, email, credential } = error;
-        console.error({error, code, message, email, credential});
-        return false;
+        catch(error){
+            const { code, message, email, credential } = error;
+            console.error({error, code, message, email, credential});
+            return false;
+        }
     }
 };
 
@@ -130,7 +138,7 @@ function updateUserInformation(authenticationType='unknown',userData,options){
         if('localStorageKey' in options)
         if(typeof options.localStorageKey === 'string')
         localStorage.setItem(options.localStorageKey,JSON.stringify(userUpdate));
-        return userUpdate.email;
+        return userUpdate;
     }
     catch(error){
         console.error(`Could not update user's records using ${authenticationType} authentication`,error);

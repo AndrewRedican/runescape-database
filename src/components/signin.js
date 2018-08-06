@@ -1,5 +1,7 @@
 import React, { Component }     from 'react';
 import { connect }              from 'react-redux';
+import { bindActionCreators }   from 'redux';
+import { googleAuthentication } from '../actions/firebase';
 import Block                    from './block';
 import SignInModal              from './signin_modal';
 import UserDropdown             from './userdropdown';
@@ -10,11 +12,12 @@ import err                      from '../morphs/err';
 class SignIn extends Component{
     constructor(props){
         super(props);
-        err.missingKey('this.props',this.props,'UserData');
+        err.missingAnyKeys('this.props',this.props,['UserData','localStorageKey']);
         this.onMouseEnter = this.onMouseEnter.bind(this);
         this.onMouseLeave = this.onMouseLeave.bind(this);
         this.onClick      = this.onClick     .bind(this);
         this.onExitModal  = this.onExitModal .bind(this);
+        this.onLogin      = this.onLogin     .bind(this);
         this.uniqueString = randomString(10);
         this.modalID      = `modal-${this.uniqueString}`;
         this.containerID  = `${this.modalID}-container`;
@@ -25,9 +28,9 @@ class SignIn extends Component{
         };
     }
     render(){
-        const { onMouseEnter, onMouseLeave, onClick, containerID, modalID, onExitModal } = this;
+        const { onMouseEnter, onMouseLeave, onClick, containerID, modalID, onExitModal, onLogin } = this;
         const { focused, modal, error } = this.state;
-        const { UserData, StorageKeys } = this.props;
+        const { UserData, localStorageKey } = this.props;
         let focusStyle = {};
         if(focused) focusStyle = {
             backgroundColor : '#FBFFFE40',
@@ -61,10 +64,11 @@ class SignIn extends Component{
                 {
                     modal ?
                         <SignInModal
-                            StorageKeys = {StorageKeys}
-                            containerID = {containerID}
-                            modalID     = {modalID}
-                            onExitModal = {onExitModal}
+                            localStorageKey = {localStorageKey}
+                            containerID     = {containerID}
+                            modalID         = {modalID}
+                            onExitModal     = {onExitModal}
+                            onLogin         = {onLogin}
                         />
                     : void(0)
                 }
@@ -90,17 +94,24 @@ class SignIn extends Component{
     onExitModal(){
         if(this.state.modal) this.setState({ modal : false });
     }
+    onLogin(localStorageKey){
+        this.props.googleAuthentication({ localStorageKey : localStorageKey });
+    }
 }
 
 function mapStateToProps(state){
     const { UserData, AppData } = state;
     return {
-        StorageKeys : {
-            localStorageKey   : AppData ? AppData.localStorageKey : false,
-            sessionStorageKey : AppData ? AppData.sessionStorageKey : false
-        },
-        UserData    : UserData
+        localStorageKey : AppData ? AppData.localStorageKey : false,
+        UserData        : UserData
     };
 }
 
-export default connect(mapStateToProps,null)(SignIn);
+function mapDispatchToProps(dispath){
+    return bindActionCreators({
+        googleAuthentication : googleAuthentication
+    }, dispath);
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn);

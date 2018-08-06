@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
-import Block                from './block';
-import err                  from '../morphs/err';
-import trim                 from '../morphs/trimtext';
-import randomString         from '../morphs/randomstring';
+import React, { Component }   from 'react';
+import { bindActionCreators } from 'redux';
+import { connect }            from 'react-redux';
+import {
+    logout
+}                             from '../actions';
+import Block                  from './block';
+import err                    from '../morphs/err';
+import trim                   from '../morphs/trimtext';
+import randomString           from '../morphs/randomstring';
 
 class DropdownItem extends Component{
     constructor(props){
@@ -66,7 +71,7 @@ class DropdownItem extends Component{
 class Dropdown extends Component{
     constructor(props){
         super(props);
-        err.missingKey('this.props',this.props,'expand');
+        err.missingAnyKeys('this.props',this.props,['expand','logout']);
         err.isNotType('this.props.expand',this.props.expand,'boolean');
         this.options = ['Log Out'];
         this.onClick = this.onClick.bind(this);
@@ -113,9 +118,15 @@ class Dropdown extends Component{
         );
     }
     onClick(option){
+        if(typeof option !== 'string') return;
+        option = option.toLowerCase().replace(/\s/g,'');
         switch(option){
-            case 'Logout' :
-                console.log('Log out')
+            case 'logout' :
+                if('logout' in this.props) this.props.logout();
+                else console.warn('logout event handler from Dropdown has not been defined by parent component');
+            break;
+            default :
+                console.warn(option);
             break;
         }
     }
@@ -124,7 +135,7 @@ class Dropdown extends Component{
 class UserDropdown extends Component{
     constructor(props){
         super(props);
-        err.missingAnyKeys('this.props',this.props,['name','picture']);
+        err.missingAnyKeys('this.props',this.props,['name','picture','logout']);
         this.onMouseEnter = this.onMouseEnter   .bind(this);
         this.onMouseLeave = this.onMouseLeave   .bind(this);
         this.state = {
@@ -133,7 +144,7 @@ class UserDropdown extends Component{
     }
     render(){
         const { onMouseEnter, onMouseLeave } = this;
-        const { picture, name } = this.props;
+        const { picture, name, logout } = this.props;
         const { expand } = this.state;
         return(
             <Block
@@ -183,7 +194,10 @@ class UserDropdown extends Component{
                 >
                     {typeof name === 'string' ? trim(name,15).result : '???' }
                 </span>
-                <Dropdown expand = {expand}/>
+                <Dropdown
+                    expand = {expand}
+                    logout = {logout}
+                />
             </Block>
         );
     }
@@ -195,4 +209,10 @@ class UserDropdown extends Component{
     }
 }
 
-export default UserDropdown;
+function mapDispatchToProps(dispath){
+    return bindActionCreators({
+        logout : logout
+    }, dispath);
+}
+
+export default connect(null,mapDispatchToProps)(UserDropdown);

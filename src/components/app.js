@@ -1,6 +1,6 @@
 import React, { Component }   from 'react';
-import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Background             from './background';
 import Header                 from './header';
 import Content                from './content';
@@ -53,10 +53,17 @@ class App extends Component {
     }
 }
 
+function mapStateToProps(state){
+    return({
+        App      : state.App,
+        UserData : state.UserData
+    });
+}
+
 function mapDispatchToProps(dispath){
     return bindActionCreators({
         initialFetch : initialFetch
     }, dispath);
 }
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
