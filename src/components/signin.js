@@ -38,48 +38,50 @@ class SignIn extends Component{
             ...this.props.focusStyle
         };
         if(UserData===null) return <noscript />;
-        if(!UserData)
         return(
             <div id = {containerID}>
-                <Block
-                    name  = 'Sign In'
-                    style = {{
-                        height             : '34px',
-                        padding            : '6px 10px',
-                        borderRadius       : '5px',
-                        backgroundColor    : '',
-                        color              : '#FBFFFE',
-                        cursor             : 'pointer',
-                        transitionDuration : '0.3s',
-                        userSelect         : 'none',
-                        ...this.props.style,
-                        ...focusStyle
-                    }}
-                    onMouseEnter = {onMouseEnter}
-                    onMouseLeave = {onMouseLeave}
-                    onClick      = {onClick}
-                >
-                    Sign In
-                </Block>
                 {
-                    modal ?
-                        <SignInModal
-                            localStorageKey = {localStorageKey}
-                            containerID     = {containerID}
-                            modalID         = {modalID}
-                            onExitModal     = {onExitModal}
-                            onLogin         = {onLogin}
+                    UserData ?
+                        <UserDropdown
+                            name    = {UserData.name}
+                            picture = {UserData.picture}
                         />
-                    : void(0)
+                    :
+                    <React.Fragment>
+                        <Block
+                            name  = 'Sign In'
+                            style = {{
+                                height             : '34px',
+                                padding            : '6px 10px',
+                                borderRadius       : '5px',
+                                backgroundColor    : '',
+                                color              : '#FBFFFE',
+                                cursor             : 'pointer',
+                                transitionDuration : '0.3s',
+                                userSelect         : 'none',
+                                ...this.props.style,
+                                ...focusStyle
+                            }}
+                            onMouseEnter = {onMouseEnter}
+                            onMouseLeave = {onMouseLeave}
+                            onClick      = {onClick}
+                        >
+                            Sign In
+                        </Block>
+                        {
+                            modal ?
+                                <SignInModal
+                                    localStorageKey = {localStorageKey}
+                                    containerID     = {containerID}
+                                    modalID         = {modalID}
+                                    onExitModal     = {onExitModal}
+                                    onLogin         = {onLogin}
+                                />
+                            : void(0)
+                        }
+                    </React.Fragment>
                 }
-            </div>
-        );
-        const { name, picture } = UserData;
-        return(
-            <UserDropdown
-                name        = {name}
-                picture     = {picture}
-            />
+             </div>
         );
     }
     onMouseEnter(){

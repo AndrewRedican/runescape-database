@@ -16,7 +16,6 @@ class SignInModal extends Component{
             display  : true,
             remember : true
         };
-        console.log('SignInModal')
     }
     render(){
         const { modalID, containerID } = this.props;

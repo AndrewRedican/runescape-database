@@ -19,7 +19,6 @@ export function initialFetch(){
             UserData = false;
         if(localData)
         if(typeof localData === 'object'){
-            console.log({localData})
             const keyNames = ['id','email','name','picture'];
             for(var i = 0; i < keyNames.length; i++){
                 const keyName = keyNames[i];
