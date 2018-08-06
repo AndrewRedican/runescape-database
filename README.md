@@ -41,7 +41,7 @@ I would like to add more, but I also tend to be overconfident. That's it for now
 4. [x] Host Project Live
 5. [x] Create Some Basic UI
 6. [x] Login Mechanism
-7. [ ] Differenciate between regular user and admin
+7. [x] Differenciate between regular user and admin <-- I FAILED. I WAS ONLY ABLE TO GET THIS FAR IN A WEEKEND :(
 8. [ ] Write server-side firebase cloud functions and publish
 9. [ ] Set up a custom Cron Engine
 10. [ ] Create view to check payload

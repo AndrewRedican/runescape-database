@@ -32,7 +32,7 @@ class SignIn extends Component{
         const { focused, modal, error } = this.state;
         const { UserData, localStorageKey } = this.props;
         let focusStyle = {};
-        if(focused) focusStyle = {
+        if(focused||modal) focusStyle = {
             backgroundColor : '#FBFFFE40',
             color           : '#FFC857',
             ...this.props.focusStyle
@@ -59,6 +59,7 @@ class SignIn extends Component{
                                 cursor             : 'pointer',
                                 transitionDuration : '0.3s',
                                 userSelect         : 'none',
+                                pointerEvents      : modal || UserData ? 'none' : 'all',
                                 ...this.props.style,
                                 ...focusStyle
                             }}
@@ -69,7 +70,7 @@ class SignIn extends Component{
                             Sign In
                         </Block>
                         {
-                            modal ?
+                            !UserData && modal ?
                                 <SignInModal
                                     localStorageKey = {localStorageKey}
                                     containerID     = {containerID}
@@ -98,6 +99,9 @@ class SignIn extends Component{
     }
     onLogin(localStorageKey){
         this.props.googleAuthentication({ localStorageKey : localStorageKey });
+    }
+    componentWillReceiveProps(){
+        this.setState({ modal : false });
     }
 }
 
