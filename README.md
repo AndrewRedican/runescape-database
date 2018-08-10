@@ -1,54 +1,28 @@
-# Weekend Challenge : RuneScape Database
+# RuneScape Database
 
-#### Last Updated: August-8-2018 by [**AndrewRedican**](https://github.com/AndrewRedican)
-
-## Prologue
-
-I am bored.
-I have decided to host and participate my own "hackathon" this weekend.
-I will be the single participant -and judge. (Perhaps will share this with co-workers at the end.)
-
-## Rules
-
-1. My first commit will start effective immediately.
-2. My final commit should be before Monday August 6, 2018 at 12:01 am (local time).
-3. I can use other repositories including my own.
-
-## Objectives
-1. See how far my technical skills / knowledge have developed.
-2. Build something for bragging rights and improve my Github resume.
+A hobby project coding project. I use this project to practice coding techniques I have learned while also developing new cod that I could potentially use on the professional scope.
 
 ## Project Description
 
-1. I will publish a live web app that provides a single admin user (me), the abbility to collect data from [*RuneScape*](http://runescape.com)'s [*Grand Exchange Database API*](http://runescape.wikia.com/wiki/Application_programming_interface).
-2. This web application should let anyone navigate information/contents. Only a single admin user (me) should have control over application settings.
-3. Setup up customizable backend functions that help me collect new updates from the RS database.
-4. Display some graphs and trends.
-5. Good Documentation:
-   + Provide relevant documentation to setup and host web app for anyone.
-   + Provide relevant comments to code.
-   + Provide good commit descriptions.
+Develop a single-page web application that provides a single admin user (me), the abbility to collect data from [**RuneScape**](http://runescape.com)'s Grand Exchange. 
 
-I would like to add more, but I also tend to be overconfident. That's it for now, should this be successful I may continue adding more to this.
+I find this an interesting project because:
+A) A BIG fan of RuneScape myself.
+B) RuneScape's the Grand Exchange, is one of the most advance exchange mechanisms any game / MMORPG has ever provided. The value of items are determined by supply/demand. In other wors, prices are not fixed, and vary over time based on the RuneScape community. This exchange mechanism simulates (sort-of) what a real Stock Exchange would look like. It is an excellent way to practice for the real thing.
+C) Firebase functions, server side functions, scheduled tasks, are one of the most recent thing I've learned. I am hoping I can develop a framework that could allow me to run and control serverside functions better. For example. I'd like to be able to:
 
-## Tasks
+1. Trigger execution of server side operations from client side.
+2. Abbility to log normal messages, errors, and warnings, similar to console.log(). At the moment I have found the firebase console lacking. This is especially true for the next reason below.
+3. Firebase function does not support the latest node version, nor the bleeding edge ES syntax. There codes needs to be transpiled to the version of node and syntax it can understand. When it comes to debugging it makes it much harded because you will not see the original code, but the transpiled version instead.
+4. I would like to be able to start, pause, cancel, delay, schedule, and keep notification of progress for each function.
+5. Should other scheduled functions scope overlap, function should not run simultaneously but rather wait, and run synchronously. 
+6. Functions should use atomicUpdates whenever possible, but also break writes into separate tasks should it be deemed necessary.
 
-1. [x] Push initial commit
-2. [x] Create a Development Setup, Generate Basic App View 
-3. [x] Create a Firebase project, add configuration files
-4. [x] Host Project Live
-5. [x] Create Some Basic UI
-6. [x] Login Mechanism
-7. [x] Differenciate between regular user and admin <-- I FAILED. I WAS ONLY ABLE TO GET THIS FAR IN A WEEKEND :(
-8. [ ] Write server-side firebase cloud functions and publish
-9. [ ] Set up a custom Cron Engine
-10. [ ] Create view to check payload
-11. [ ] Setup a backend mechanism for continuos updates.
-12. [ ] Add a view to control backend functions.
-13. [ ] Add login mechanism.
-14. [ ] Add some detailed visuals, graphs even.
-15. [ ] Add a way to download database to csv and json.
-16. [ ] BONUS - Set up a staging environment 
+Server side functions will call [**Grand Exchange Database API**](http://runescape.wikia.com/wiki/Application_programming_interface) periodically to retrieve the most recent information. It will then compare the existing prices and update the current price and add to a historical log of price from which a tendency can be constructed.
+
+This web application should let anyone navigate information/contents. Users a limited only to read information.
+A single user recognized as admin (me) should have control over application settings.
+For this purpose a login mechanism using Firebase Auth with Google has been provided.
 
 ## Live Project At
 
