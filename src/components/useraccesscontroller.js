@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Block                from './block';
-import SignIn               from './signin';
+import React, { Component } from 'react'
+import Block                from './block'
+import SignIn               from './signin'
 
 class UserAccessController extends Component{
     constructor(props){
-        super(props);
+        super(props)
     }
     render(){
         return(
@@ -18,11 +18,11 @@ class UserAccessController extends Component{
             >
                 <SignIn/>
             </Block>
-        );
+        )
     }
     componentDidMount(){
 
     }
 }
 
-export default UserAccessController;
+export default UserAccessController

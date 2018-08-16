@@ -15,4 +15,4 @@ module.exports = {
         animated         : true,
         stacked          : true
     }
-};
+}

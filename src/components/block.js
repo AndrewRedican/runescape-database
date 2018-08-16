@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 /**
  * Basic Build Block of UI
@@ -8,19 +8,19 @@ import React, { Component } from 'react';
 
 class Block extends Component{
     constructor(props){
-        super(props);
+        super(props)
     }
     render(){
-        let customStyle = {};
+        let customStyle = {}
         if(typeof this.props.center === 'string'){
-            if(this.props.center.indexOf('vertical')>-1)   customStyle = { ...customStyle, top  : '50%' };
-            if(this.props.center.indexOf('horizontal')>-1) customStyle = { ...customStyle, left : '50%' };
+            if(this.props.center.indexOf('vertical')>-1)   customStyle = { ...customStyle, top  : '50%' }
+            if(this.props.center.indexOf('horizontal')>-1) customStyle = { ...customStyle, left : '50%' }
         }
         if(Object.keys(customStyle).length>0)
             customStyle = { 
                 ...customStyle,
                 transform : `translate(-${(customStyle.left||'0%')},-${(customStyle.top||'0%')})`
-            };
+            }
         return(
             <span
                 style = {{
@@ -55,8 +55,8 @@ class Block extends Component{
                     {this.props.children}
                 </div>
             </span>
-        );
+        )
     }
 }
 
-export default Block;
+export default Block

@@ -1,8 +1,8 @@
-const { BABEL_ENV } = process.env;
+const { BABEL_ENV } = process.env
 
-console.log("Running Babel ...", { BABEL_ENV });
+console.log("Running Babel ...", { BABEL_ENV })
 
-const moduleSystem = (BABEL_ENV && BABEL_ENV.startsWith('modules:')) ? BABEL_ENV.substring("modules:".length) : "es";
+const moduleSystem = (BABEL_ENV && BABEL_ENV.startsWith('modules:')) ? BABEL_ENV.substring("modules:".length) : "es"
 
 // For the ES configuration only transpile react to valid JavaScript.
 // For commonjs transpile to old JS versions.
@@ -21,12 +21,12 @@ const presets = moduleSystem === "es"
       modules: moduleSystem,
     }],
     '@babel/preset-react'
-  ];
+  ]
 
 /**
  * documentation: https://babeljs.io/docs/en/next/babel-plugin-transform-runtime.html
  */
-const transformOptions = { useESModules: moduleSystem === "es" };
+const transformOptions = { useESModules: moduleSystem === "es" }
 
 module.exports = {
   presets,
@@ -46,4 +46,4 @@ module.exports = {
     }
   },
   ignore: ['scripts/*.js']
-};
+}

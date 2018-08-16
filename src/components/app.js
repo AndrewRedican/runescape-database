@@ -1,21 +1,21 @@
-import React, { Component }   from 'react';
-import { connect }            from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Background             from './background';
-import Header                 from './header';
-import Content                from './content';
-import Block                  from './block';
-import UserAccess             from './useraccesscontroller';
-import { initialFetch }       from '../actions';
-import err                    from '../morphs/err';
+import React, { Component }   from 'react'
+import { connect }            from 'react-redux'
+import { bindActionCreators } from 'redux'
+import Background             from './background'
+import Header                 from './header'
+import Content                from './content'
+import Block                  from './block'
+import UserAccess             from './useraccesscontroller'
+import { initialFetch }       from '../actions'
+import err                    from '../morphs/err'
 
 class App extends Component {
     constructor(props){
-        super(props);
-        err.missingKey('this.props',this.props,'initialFetch');
+        super(props)
+        err.missingKey('this.props',this.props,'initialFetch')
     }
     componentWillMount(){
-        this.props.initialFetch();
+        this.props.initialFetch()
     }
     render(){
         return(
@@ -49,7 +49,7 @@ class App extends Component {
                     Content Goes Here
                 </Content>
             </Background>
-        );
+        )
     }
 }
 
@@ -57,13 +57,13 @@ function mapStateToProps(state){
     return({
         App      : state.App,
         UserData : state.UserData
-    });
+    })
 }
 
 function mapDispatchToProps(dispath){
     return bindActionCreators({
         initialFetch : initialFetch
-    }, dispath);
+    }, dispath)
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App)

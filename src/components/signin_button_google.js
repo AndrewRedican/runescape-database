@@ -1,18 +1,18 @@
-import React, { Component }     from 'react';
-import Block                    from './block';
-import err                      from '../morphs/err';
+import React, { Component }     from 'react'
+import Block                    from './block'
+import err                      from '../morphs/err'
 
 class GoogleLogin extends Component{
     constructor(props){
-        super(props);
-        err.missingKey('this.props',this.props,'onClick');
-        this.state        = { focused : false };
-        this.onMouseEnter = this.onMouseEnter   .bind(this);
-        this.onMouseLeave = this.onMouseLeave   .bind(this);
-        this.onClick      = this.onClick        .bind(this);
+        super(props)
+        err.missingKey('this.props',this.props,'onClick')
+        this.state        = { focused : false }
+        this.onMouseEnter = this.onMouseEnter   .bind(this)
+        this.onMouseLeave = this.onMouseLeave   .bind(this)
+        this.onClick      = this.onClick        .bind(this)
     }
     render(){
-        const { onMouseEnter, onMouseLeave, onClick } = this;
+        const { onMouseEnter, onMouseLeave, onClick } = this
         return(
             <Block
                 center = 'horizontally'
@@ -43,17 +43,17 @@ class GoogleLogin extends Component{
                     <span> Login with Google</span>
                 </div>
             </Block>
-        );
+        )
     }
     onMouseEnter(){
-        this.setState({ focused : true });
+        this.setState({ focused : true })
     }
     onMouseLeave(){
-        this.setState({ focused : false });
+        this.setState({ focused : false })
     }
     onClick(){
-        this.props.onClick();
+        this.props.onClick()
     }
 }
 
-export default GoogleLogin;
+export default GoogleLogin

@@ -1,36 +1,36 @@
-import React, { Component }   from 'react';
-import { bindActionCreators } from 'redux';
-import { connect }            from 'react-redux';
+import React, { Component }   from 'react'
+import { bindActionCreators } from 'redux'
+import { connect }            from 'react-redux'
 import {
     logout
-}                             from '../actions';
-import Block                  from './block';
-import err                    from '../morphs/err';
-import trim                   from '../morphs/trimtext';
-import randomString           from '../morphs/randomstring';
+}                             from '../actions'
+import Block                  from './block'
+import err                    from '../morphs/err'
+import trim                   from '../morphs/trimtext'
+import randomString           from '../morphs/randomstring'
 
 class DropdownItem extends Component{
     constructor(props){
-        super(props);
-        err.missingAnyKeys('this.props',this.props,['text','value']);
-        ['value','text'].forEach( keyName => { err.isUndefined(`this.props.${keyName}`,this.props[keyName]); });
-        this.onMouseEnter = this.onMouseEnter   .bind(this);
-        this.onMouseLeave = this.onMouseLeave   .bind(this);
-        this.onClick      = this.onClick        .bind(this);
+        super(props)
+        err.missingAnyKeys('this.props',this.props,['text','value'])
+        ['value','text'].forEach( keyName => { err.isUndefined(`this.props.${keyName}`,this.props[keyName]) })
+        this.onMouseEnter = this.onMouseEnter   .bind(this)
+        this.onMouseLeave = this.onMouseLeave   .bind(this)
+        this.onClick      = this.onClick        .bind(this)
         this.state = { 
             focused : false
-        };
+        }
     }
     render(){
-        const { onMouseEnter, onMouseLeave, onClick } = this;
-        const { text } = this.props;
-        const { focused } = this.state;
-        let focusedStyle = {};
+        const { onMouseEnter, onMouseLeave, onClick } = this
+        const { text } = this.props
+        const { focused } = this.state
+        let focusedStyle = {}
         if(focused)
             focusedStyle = {
                 color           : '#FFC857',
                 backgroundColor : '#FFFFFF26'
-            };
+            }
         return(
             <div
                 style = {{
@@ -54,31 +54,31 @@ class DropdownItem extends Component{
             >
                 {(text||'???')}
             </div>
-        );
+        )
     }
     onMouseEnter(){
-        this.setState({ focused : true });
+        this.setState({ focused : true })
     }
     onMouseLeave(){
-        this.setState({ focused : false });
+        this.setState({ focused : false })
     }
     onClick(){
-        if('onClick' in this.props) this.props.onClick(this.props.value);
-        else console.warn('onClick event handler for Dropdown Item has not been specified by parent component');
+        if('onClick' in this.props) this.props.onClick(this.props.value)
+        else console.warn('onClick event handler for Dropdown Item has not been specified by parent component')
     }
 }
 
 class Dropdown extends Component{
     constructor(props){
-        super(props);
-        err.missingAnyKeys('this.props',this.props,['expand','logout']);
-        err.isNotType('this.props.expand',this.props.expand,'boolean');
-        this.options = ['Log Out'];
-        this.onClick = this.onClick.bind(this);
+        super(props)
+        err.missingAnyKeys('this.props',this.props,['expand','logout'])
+        err.isNotType('this.props.expand',this.props.expand,'boolean')
+        this.options = ['Log Out']
+        this.onClick = this.onClick.bind(this)
     }
     render(){
-        const { options, onClick} = this;
-        const { expand } = this.props;
+        const { options, onClick} = this
+        const { expand } = this.props
         return(
             <div
                 name  = 'dropdown'
@@ -110,42 +110,42 @@ class Dropdown extends Component{
                                     value   = {option}
                                     onClick = {onClick}
                                 />
-                            );
+                            )
                         })
                     : void(0)
                 }
             </div>
-        );
+        )
     }
     onClick(option){
-        if(typeof option !== 'string') return;
-        option = option.toLowerCase().replace(/\s/g,'');
+        if(typeof option !== 'string') return
+        option = option.toLowerCase().replace(/\s/g,'')
         switch(option){
             case 'logout' :
-                if('logout' in this.props) this.props.logout();
-                else console.warn('logout event handler from Dropdown has not been defined by parent component');
-            break;
+                if('logout' in this.props) this.props.logout()
+                else console.warn('logout event handler from Dropdown has not been defined by parent component')
+            break
             default :
-                console.warn(option);
-            break;
+                console.warn(option)
+            break
         }
     }
 }
 
 class UserDropdown extends Component{
     constructor(props){
-        super(props);
-        err.missingAnyKeys('this.props',this.props,['name','picture','logout']);
-        this.onMouseEnter = this.onMouseEnter   .bind(this);
-        this.onMouseLeave = this.onMouseLeave   .bind(this);
+        super(props)
+        err.missingAnyKeys('this.props',this.props,['name','picture','logout'])
+        this.onMouseEnter = this.onMouseEnter   .bind(this)
+        this.onMouseLeave = this.onMouseLeave   .bind(this)
         this.state = {
             expand : false
-        };
+        }
     }
     render(){
-        const { onMouseEnter, onMouseLeave } = this;
-        const { picture, name, logout } = this.props;
-        const { expand } = this.state;
+        const { onMouseEnter, onMouseLeave } = this
+        const { picture, name, logout } = this.props
+        const { expand } = this.state
         return(
             <Block
                 name  = 'User Options'    
@@ -199,20 +199,20 @@ class UserDropdown extends Component{
                     logout = {logout}
                 />
             </Block>
-        );
+        )
     }
     onMouseEnter(){
-        this.setState({ expand : true });
+        this.setState({ expand : true })
     }
     onMouseLeave(){
-        this.setState({ expand : false });
+        this.setState({ expand : false })
     }
 }
 
 function mapDispatchToProps(dispath){
     return bindActionCreators({
         logout : logout
-    }, dispath);
+    }, dispath)
 }
 
-export default connect(null,mapDispatchToProps)(UserDropdown);
+export default connect(null,mapDispatchToProps)(UserDropdown)

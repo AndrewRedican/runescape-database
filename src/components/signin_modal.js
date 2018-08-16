@@ -1,26 +1,26 @@
-import React, { Component }     from 'react';
-import SketchModal              from './sketchmodal';
-import Block                    from './block';
-import GoogleLogin              from './signin_button_google';
-import Checkbox                 from 'rc-checkbox';
-import err                      from '../morphs/err';
-import 'rc-checkbox/assets/index.css';
+import React, { Component }     from 'react'
+import SketchModal              from './sketchmodal'
+import Block                    from './block'
+import GoogleLogin              from './signin_button_google'
+import Checkbox                 from 'rc-checkbox'
+import err                      from '../morphs/err'
+import 'rc-checkbox/assets/index.css'
 
 class SignInModal extends Component{
     constructor(props){
-        super(props);
-        this.onGoogleLogin = this.onGoogleLogin.bind(this);
-        err.missingAnyKeys('this.props',this.props,['modalID','containerID','onExitModal','localStorageKey','onLogin']);     
-        this.onExit = this.onExit.bind(this);
+        super(props)
+        this.onGoogleLogin = this.onGoogleLogin.bind(this)
+        err.missingAnyKeys('this.props',this.props,['modalID','containerID','onExitModal','localStorageKey','onLogin'])     
+        this.onExit = this.onExit.bind(this)
         this.state  = { 
             display  : true,
             remember : true
-        };
+        }
     }
     render(){
-        const { modalID, containerID } = this.props;
-        const { onGoogleLogin } = this;
-        const { display } = this.state;
+        const { modalID, containerID } = this.props
+        const { onGoogleLogin } = this
+        const { display } = this.state
         return(
             <div id = {containerID} >
                 {
@@ -139,16 +139,16 @@ class SignInModal extends Component{
                     : void(0)
                 }
             </div>
-        );
+        )
     }
     onExit(){
-        if(!this.state.display) return;
-        this.setState({ display : false });
-        if('onExitModal' in this.props) this.props.onExitModal();
+        if(!this.state.display) return
+        this.setState({ display : false })
+        if('onExitModal' in this.props) this.props.onExitModal()
     }
     onGoogleLogin(){
-        this.props.onLogin(this.state.remember);
+        this.props.onLogin(this.state.remember)
     }
 }
 
-export default SignInModal;
+export default SignInModal

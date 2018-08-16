@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import err                  from '../morphs/err';
-import Block                from './block';
+import React, { Component } from 'react'
+import err                  from '../morphs/err'
+import Block                from './block'
 
 class Content extends Component{
     constructor(props){
-        super(props);
-        this.setListener      = this.setListener      .bind(this);
-        this.removeListener   = this.removeListener   .bind(this);
-        this.updateDimensions = this.updateDimensions .bind(this);
+        super(props)
+        this.setListener      = this.setListener      .bind(this)
+        this.removeListener   = this.removeListener   .bind(this)
+        this.updateDimensions = this.updateDimensions .bind(this)
         this.state = {
             height : '100%',
             width  : '100%'
-        };
+        }
     }
     render(){
-        const { height, width } = this.state;
+        const { height, width } = this.state
         return(
             <Block
                 name  = 'content-wide'
@@ -40,35 +40,35 @@ class Content extends Component{
                     {this.props.children}
                 </Block>
             </Block>
-        );
+        )
     }
     componentDidMount(){
-        this.updateDimensions();
-        this.setListener('resize',this.updateDimensions);
+        this.updateDimensions()
+        this.setListener('resize',this.updateDimensions)
     }
     componentWillUnmount(){
-        this.removeListener('resize',this.updateDimensions);
+        this.removeListener('resize',this.updateDimensions)
     }
     setListener(actionType,callbackFunction) {
-        err.isNotType('actionType',actionType,'string');
-        err.isUndefined('callbackFunction',callbackFunction);
-        window.addEventListener(actionType, callbackFunction, true); 
+        err.isNotType('actionType',actionType,'string')
+        err.isUndefined('callbackFunction',callbackFunction)
+        window.addEventListener(actionType, callbackFunction, true) 
     }
     removeListener(actionType,callbackFunction) {
-        err.isNotType('actionType',actionType,'string');
-        err.isUndefined('callbackFunction',callbackFunction);
-        window.removeEventListener(actionType, callbackFunction, true);
+        err.isNotType('actionType',actionType,'string')
+        err.isUndefined('callbackFunction',callbackFunction)
+        window.removeEventListener(actionType, callbackFunction, true)
     }
     updateDimensions(){
-        let { innerWidth, innerHeight } = window;
+        let { innerWidth, innerHeight } = window
         this.setState({ 
             width  : `${innerWidth}px`,
             height : `${innerHeight > 80 ? innerHeight - 80 : innerHeight  }px`
-        });
+        })
     }
     componentDidCatch(){ 
-        this.setState({ hasError : true });
+        this.setState({ hasError : true })
     }
 }
 
-export default Content;
+export default Content

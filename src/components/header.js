@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import err                  from '../morphs/err';
-import Block                from './block';
+import React, { Component } from 'react'
+import err                  from '../morphs/err'
+import Block                from './block'
 
 class Header extends Component{
     constructor(props){
-        super(props);
-        this.setListener      = this.setListener      .bind(this);
-        this.removeListener   = this.removeListener   .bind(this);
-        this.updateDimensions = this.updateDimensions .bind(this);
-        this.state = { width  : '100%' };
+        super(props)
+        this.setListener      = this.setListener      .bind(this)
+        this.removeListener   = this.removeListener   .bind(this)
+        this.updateDimensions = this.updateDimensions .bind(this)
+        this.state = { width  : '100%' }
     }
     render(){
         return(
@@ -25,31 +25,31 @@ class Header extends Component{
             >
                 {this.props.children}
             </Block>
-        );
+        )
     }
     componentDidMount(){
-        this.updateDimensions();
-        this.setListener('resize',this.updateDimensions);
+        this.updateDimensions()
+        this.setListener('resize',this.updateDimensions)
     }
     componentWillUnmount(){
-        this.removeListener('resize',this.updateDimensions);
+        this.removeListener('resize',this.updateDimensions)
     }
     setListener(actionType,callbackFunction) {
-        err.isNotType('actionType',actionType,'string');
-        err.isUndefined('callbackFunction',callbackFunction);
-        window.addEventListener(actionType, callbackFunction, true); 
+        err.isNotType('actionType',actionType,'string')
+        err.isUndefined('callbackFunction',callbackFunction)
+        window.addEventListener(actionType, callbackFunction, true) 
     }
     removeListener(actionType,callbackFunction) {
-        err.isNotType('actionType',actionType,'string');
-        err.isUndefined('callbackFunction',callbackFunction);
-        window.removeEventListener(actionType, callbackFunction, true);
+        err.isNotType('actionType',actionType,'string')
+        err.isUndefined('callbackFunction',callbackFunction)
+        window.removeEventListener(actionType, callbackFunction, true)
     }
     updateDimensions(){
-        this.setState({ width  : `${window.innerWidth}px` });
+        this.setState({ width  : `${window.innerWidth}px` })
     }
     componentDidCatch(){ 
-        this.setState({ hasError : true });
+        this.setState({ hasError : true })
     }
 }
 
-export default Header;
+export default Header

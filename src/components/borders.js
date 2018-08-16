@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class Borders extends Component{
     constructor(props){
-        super(props);
+        super(props)
     }
     render(){
         return(
@@ -48,8 +48,8 @@ class Borders extends Component{
                     {this.props.children}
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default Borders;
+export default Borders

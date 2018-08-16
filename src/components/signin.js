@@ -1,43 +1,43 @@
-import React, { Component }     from 'react';
-import { connect }              from 'react-redux';
-import { bindActionCreators }   from 'redux';
-import { googleAuthentication } from '../actions/firebase';
-import Block                    from './block';
-import SignInModal              from './signin_modal';
-import UserDropdown             from './userdropdown';
-import randomString             from '../morphs/randomstring';
-import err                      from '../morphs/err';
+import React, { Component }     from 'react'
+import { connect }              from 'react-redux'
+import { bindActionCreators }   from 'redux'
+import { googleAuthentication } from '../actions/firebase'
+import Block                    from './block'
+import SignInModal              from './signin_modal'
+import UserDropdown             from './userdropdown'
+import randomString             from '../morphs/randomstring'
+import err                      from '../morphs/err'
 
 
 class SignIn extends Component{
     constructor(props){
-        super(props);
-        err.missingAnyKeys('this.props',this.props,['UserData','localStorageKey']);
-        this.onMouseEnter = this.onMouseEnter.bind(this);
-        this.onMouseLeave = this.onMouseLeave.bind(this);
-        this.onClick      = this.onClick     .bind(this);
-        this.onExitModal  = this.onExitModal .bind(this);
-        this.onLogin      = this.onLogin     .bind(this);
-        this.uniqueString = randomString(10);
-        this.modalID      = `modal-${this.uniqueString}`;
-        this.containerID  = `${this.modalID}-container`;
+        super(props)
+        err.missingAnyKeys('this.props',this.props,['UserData','localStorageKey'])
+        this.onMouseEnter = this.onMouseEnter.bind(this)
+        this.onMouseLeave = this.onMouseLeave.bind(this)
+        this.onClick      = this.onClick     .bind(this)
+        this.onExitModal  = this.onExitModal .bind(this)
+        this.onLogin      = this.onLogin     .bind(this)
+        this.uniqueString = randomString(10)
+        this.modalID      = `modal-${this.uniqueString}`
+        this.containerID  = `${this.modalID}-container`
         this.state = {
             modal   : false,
             focused : false,
             error   : false
-        };
+        }
     }
     render(){
-        const { onMouseEnter, onMouseLeave, onClick, containerID, modalID, onExitModal, onLogin } = this;
-        const { focused, modal, error } = this.state;
-        const { UserData, localStorageKey } = this.props;
-        let focusStyle = {};
+        const { onMouseEnter, onMouseLeave, onClick, containerID, modalID, onExitModal, onLogin } = this
+        const { focused, modal, error } = this.state
+        const { UserData, localStorageKey } = this.props
+        let focusStyle = {}
         if(focused||modal) focusStyle = {
             backgroundColor : '#FBFFFE40',
             color           : '#FFC857',
             ...this.props.focusStyle
-        };
-        if(UserData===null) return <noscript />;
+        }
+        if(UserData===null) return <noscript />
         return(
             <div id = {containerID}>
                 {
@@ -83,41 +83,41 @@ class SignIn extends Component{
                     </React.Fragment>
                 }
              </div>
-        );
+        )
     }
     onMouseEnter(){
-        this.setState({ focused : true });
+        this.setState({ focused : true })
     }
     onMouseLeave(){
-        this.setState({ focused : false });
+        this.setState({ focused : false })
     }
     onClick(){
-        if(!this.state.modal) this.setState({ modal : true });
+        if(!this.state.modal) this.setState({ modal : true })
     }
     onExitModal(){
-        if(this.state.modal) this.setState({ modal : false });
+        if(this.state.modal) this.setState({ modal : false })
     }
     onLogin(localStorageKey){
-        this.props.googleAuthentication({ localStorageKey : localStorageKey });
+        this.props.googleAuthentication({ localStorageKey : localStorageKey })
     }
     componentWillReceiveProps(){
-        this.setState({ modal : false });
+        this.setState({ modal : false })
     }
 }
 
 function mapStateToProps(state){
-    const { UserData, AppData } = state;
+    const { UserData, AppData } = state
     return {
         localStorageKey : AppData ? AppData.localStorageKey : false,
         UserData        : UserData
-    };
+    }
 }
 
 function mapDispatchToProps(dispath){
     return bindActionCreators({
         googleAuthentication : googleAuthentication
-    }, dispath);
+    }, dispath)
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn)
